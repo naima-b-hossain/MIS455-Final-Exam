@@ -1,3 +1,5 @@
+var food_list = [];
+
 function searchButtonClick(){
     let food_name = document.getElementById('food_name').value.trim();
     (food_name != "") && getFoodbyName(food_name);
@@ -10,8 +12,7 @@ function getFoodbyName(food_name){
 }
 
 function displayAllFood(data){
-    console.log(data.meals);
-    console.log(data.meals.length);
+    food_list = data.meals;
 
     document.getElementById("display_all_food_info").innerHTML="";
     let outerDiv = document.getElementById("display_all_food_info");
@@ -68,24 +69,67 @@ function displayAllFood(data){
         outerDiv.appendChild(newDiv);
     }
 
-    let newbuttonDiv = document.createElement('div');
-    newbuttonDiv.innerHTML = 
+    if(data.meals.length>5){
+        let newbuttonDiv = document.createElement('div');
+        newbuttonDiv.innerHTML = 
+            `<div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button class="custom_button_2" onclick="showAllFood()">Show All</button>
+                    </div>
+                </div>
+            </div>`;
+        newbuttonDiv.style="display: flex; justify-content: center; background: #42f2f5; padding: 50px 0";
+        outerDiv.appendChild(newbuttonDiv);
+    }
+}
+
+function showAllFood(){
+    let outerDiv = document.getElementById("display_all_food_info");
+    
+    for(let i=5; i<data.meals.length; i++){
+        let newDiv = document.createElement('div');
+        newDiv.innerHTML = 
         `<div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <button class="custom_button_2" onclick="getMoreData()">Show All</button>
+                    Food Information
+                </div>
+                <div class="col-lg-4">
+                    Meal ID
+                </div>
+                <div class="col-lg-8">
+                    ${data.meals[i].idMeal}
+                </div>
+                <div class="col-lg-4">
+                    Meal Name
+                </div>
+                <div class="col-lg-8">
+                    ${data.meals[i].strMeal}
+                </div>
+                <div class="col-lg-4">
+                    Meal Image
+                </div>
+                <div class="col-lg-8">
+                    <img src="${data.meals[i].strMealThumb}" alt="Image not found." width="250px" />
+                </div>
+                <div class="col-lg-4">
+                    Meal Title
+                </div>
+                <div class="col-lg-8">
+                    ${data.meals[i].strMeal}
+                </div>
+                <div class="col-lg-4">
+                    Cooking Instruction
+                </div>
+                <div class="col-lg-8">
+                    ${(data.meals[i].strYoutube=="") ? `<span>Link not found.</span>` : `<a href="${data.meals[i].strYoutube}">${data.meals[i].strYoutube}</a>`}
                 </div>
             </div>
         </div>`;
-    newbuttonDiv.style="display: flex; justify-content: center; background: #42f2f5; padding: 50px 0";
-    outerDiv.appendChild(newbuttonDiv);
+        newDiv.style="display: flex; justify-content: center; background: #42f2f5; padding: 50px 0";
 
 
-
-    
-    
-}
-
-function getMoreData(){
-    
+        outerDiv.appendChild(newDiv);
+    }
 }
