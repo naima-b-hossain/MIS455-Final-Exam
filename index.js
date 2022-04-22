@@ -14,7 +14,7 @@ function displayAllFood(data){
     console.log(data.meals.length);
 
     document.getElementById("display_all_food_info").innerHTML="";
-    var outerDiv = document.getElementById("display_all_food_info");
+    let outerDiv = document.getElementById("display_all_food_info");
     
     let arrLength = 0;
     if(data.meals.length>=5){
@@ -23,7 +23,7 @@ function displayAllFood(data){
         arrLength = data.meals.length;
     }
     for(let i=0; i<arrLength; i++){
-        var newDiv = document.createElement('div');
+        let newDiv = document.createElement('div');
         newDiv.innerHTML = 
         `<div class="container-fluid">
             <div class="row">
@@ -68,7 +68,24 @@ function displayAllFood(data){
         outerDiv.appendChild(newDiv);
     }
 
+    let newbuttonDiv = document.createElement('div');
+    newbuttonDiv.innerHTML = 
+        `<div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <button class="custom_button_2" onclick="getMoreData()">Show All</button>
+                </div>
+            </div>
+        </div>`;
+    newbuttonDiv.style="display: flex; justify-content: center; background: #42f2f5; padding: 50px 0";
+    outerDiv.appendChild(newbuttonDiv);
+
+
 
     
+    
+}
+
+function getMoreData(){
     
 }
