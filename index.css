@@ -47,6 +47,14 @@
     margin-top: 20px;
 }
 
+.custom_button_2_2{
+    border: none;
+    background-color: orangered;
+    color: white;
+    padding: 10px 50px;
+    font-weight: bold;
+}
+
 .custom_button_2:hover{
     background-color: yellow;
     color: black;

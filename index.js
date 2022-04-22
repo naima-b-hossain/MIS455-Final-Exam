@@ -70,24 +70,26 @@ function displayAllFood(data){
     }
 
     if(data.meals.length>5){
+        let outerDiv2 = document.getElementById("show_all");
         let newbuttonDiv = document.createElement('div');
         newbuttonDiv.innerHTML = 
             `<div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <button class="custom_button_2" onclick="showAllFood()">Show All</button>
+                        <button class="custom_button_2_2" onclick="showAllFood()">Show All</button>
                     </div>
                 </div>
             </div>`;
-        newbuttonDiv.style="display: flex; justify-content: center; background: #42f2f5; padding: 50px 0";
-        outerDiv.appendChild(newbuttonDiv);
+        newbuttonDiv.style="display: flex; justify-content: center; background: #42f2f5; padding: 10px";
+        outerDiv2.appendChild(newbuttonDiv);
     }
 }
 
 function showAllFood(){
+    document.getElementById("show_all").innerHTML="";
     let outerDiv = document.getElementById("display_all_food_info");
     
-    for(let i=5; i<data.meals.length; i++){
+    for(let i=5; i<food_list.length; i++){
         let newDiv = document.createElement('div');
         newDiv.innerHTML = 
         `<div class="container-fluid">
@@ -99,31 +101,31 @@ function showAllFood(){
                     Meal ID
                 </div>
                 <div class="col-lg-8">
-                    ${data.meals[i].idMeal}
+                    ${food_list[i].idMeal}
                 </div>
                 <div class="col-lg-4">
                     Meal Name
                 </div>
                 <div class="col-lg-8">
-                    ${data.meals[i].strMeal}
+                    ${food_list[i].strMeal}
                 </div>
                 <div class="col-lg-4">
                     Meal Image
                 </div>
                 <div class="col-lg-8">
-                    <img src="${data.meals[i].strMealThumb}" alt="Image not found." width="250px" />
+                    <img src="${food_list[i].strMealThumb}" alt="Image not found." width="250px" />
                 </div>
                 <div class="col-lg-4">
                     Meal Title
                 </div>
                 <div class="col-lg-8">
-                    ${data.meals[i].strMeal}
+                    ${food_list[i].strMeal}
                 </div>
                 <div class="col-lg-4">
                     Cooking Instruction
                 </div>
                 <div class="col-lg-8">
-                    ${(data.meals[i].strYoutube=="") ? `<span>Link not found.</span>` : `<a href="${data.meals[i].strYoutube}">${data.meals[i].strYoutube}</a>`}
+                    ${(food_list.strYoutube=="") ? `<span>Link not found.</span>` : `<a href="${food_list[i].strYoutube}">${food_list.strYoutube}</a>`}
                 </div>
             </div>
         </div>`;
